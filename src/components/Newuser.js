@@ -6,7 +6,7 @@ const Newuser = () => {
     id: '',
     email: '',
     name: '',
-    photo: '',
+    photo: null, // Changed to null to hold the file object
     bio: '',
     status: '',
     createdAt: '',
@@ -17,10 +17,23 @@ const Newuser = () => {
     setUserDetails({ ...userDetails, [name]: value });
   };
 
+  const handleFileChange = (e) => {
+    setUserDetails({ ...userDetails, photo: e.target.files[0] });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append('id', userDetails.id);
+    formData.append('email', userDetails.email);
+    formData.append('name', userDetails.name);
+    formData.append('photo', userDetails.photo);
+    formData.append('bio', userDetails.bio);
+    formData.append('status', userDetails.status);
+    formData.append('createdAt', userDetails.createdAt);
+
+    // You would typically send `formData` to your server here
     console.log('User details submitted:', userDetails);
-    // Add functionality to save the new user to your database or API here.
   };
 
   return (
@@ -30,7 +43,7 @@ const Newuser = () => {
           <h2 className="fw-bold">Add New User</h2>
         </Col>
       </Row>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} encType="multipart/form-data">
         <Row className="mb-3">
           <Col md={6}>
             <Form.Group controlId="formUserID" className="mb-3">
@@ -75,13 +88,12 @@ const Newuser = () => {
           </Col>
           <Col md={6}>
             <Form.Group controlId="formUserPhoto" className="mb-3">
-              <Form.Label>Photo URL</Form.Label>
+              <Form.Label>Upload Photo</Form.Label>
               <Form.Control
-                type="text"
-                placeholder="Enter photo URL"
+                type="file"
                 name="photo"
-                value={userDetails.photo}
-                onChange={handleChange}
+                onChange={handleFileChange}
+                required
               />
             </Form.Group>
           </Col>
