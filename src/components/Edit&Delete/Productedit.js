@@ -1,64 +1,134 @@
-import React from 'react';
-import { Button, Table, InputGroup, FormControl, Container, Row, Col } from 'react-bootstrap';
-import {  FaEdit, FaSearch, FaSave } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { Button, Form, Container, Row, Col } from 'react-bootstrap';
+import { FaSave } from 'react-icons/fa';
 
-const Products = () => {
+const ProductEdit = () => {
+  const [product, setProduct] = useState({
+    id: '0003',
+    name: 'Laptopb',
+    categoryId: '5525',
+    brand: 'Apple',
+    description: 'For learning',
+    image: '',
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setProduct({
+      ...product,
+      [name]: value,
+    });
+  };
+
+  const handlePhotoChange = (e) => {
+    setProduct({
+      ...product,
+      image: URL.createObjectURL(e.target.files[0]),
+    });
+  };
+
+  const handleSave = () => {
+    // Here you would typically save the updated product data to your backend
+    console.log('Saved product:', product);
+  };
+
   return (
     <Container fluid className="mt-4">
-      <h2 className="fw-bold pb-2"> Product Management</h2>
-      <Row className="mb-3">
-        <Col md={9}>
-        <InputGroup>
-            <FormControl
-              placeholder="Search products by name or brand"
-              aria-label="Search"
-              aria-describedby="button-addon2"
-            />
-            <Button variant="outline-primary" id="button-addon2">
-            <FaSearch /> {/* Consistent icon usage */}
-            <i className="bi bi-search"></i> 
-            </Button>
-          </InputGroup>
-        </Col>
-        <Col md={3} className="d-flex justify-content-md-end">
-          <Button className='btn btn-warning' size="md">+ Add New Product</Button>
-        </Col>
-      </Row>
-      <Table responsive="md" striped bordered hover className="product-table">
-        <thead className="bg-dark text-white">
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Category Id</th>
-            <th>Brand</th>
-            <th>Description</th>
-            <th>Images</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-         
-          <tr>
-            <td>0003</td>
-            <td>Laptopb</td>
-            <td>5525</td>
-            <td>Apple</td>
-            <td>For learning</td>
-            <td><img src="https://via.placeholder.com/50" alt="User" className="rounded-circle" /></td>
-            <td>
-              <Button size="sm"  className="me-2 mb-1 text-success" variant="light">
-                <FaEdit /> 
-              </Button>
-              <Button size="sm"  className="me-2 mb-1 text-danger" variant="light">
-                <FaSave />
-              </Button>
-            </td>
-          </tr>
-          {/* Additional rows would be dynamically generated here */}
-        </tbody>
-      </Table>
+      <h2 className="fw-bold pb-2">Edit Product</h2>
+      <Form>
+        <Row className="mb-3">
+          <Col md={6}>
+            <Form.Group controlId="formProductID">
+              <Form.Label>ID</Form.Label>
+              <Form.Control
+                type="text"
+                name="id"
+                value={product.id}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group controlId="formProductName">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="name"
+                value={product.name}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Row className="mb-3">
+          <Col md={6}>
+            <Form.Group controlId="formProductCategoryId">
+              <Form.Label>Category ID</Form.Label>
+              <Form.Control
+                type="text"
+                name="categoryId"
+                value={product.categoryId}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group controlId="formProductBrand">
+              <Form.Label>Brand</Form.Label>
+              <Form.Control
+                type="text"
+                name="brand"
+                value={product.brand}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Row className="mb-3">
+          <Col md={12}>
+            <Form.Group controlId="formProductDescription">
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                name="description"
+                value={product.description}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Row className="mb-3">
+          <Col md={6}>
+            <Form.Group controlId="formProductImage">
+              <Form.Label>Image</Form.Label>
+              <Form.Control
+                type="file"
+                name="image"
+                accept="image/*"
+                onChange={handlePhotoChange}
+              />
+              {product.image && (
+                <img
+                  src={product.image}
+                  alt="Product"
+                  className="rounded-circle mt-2"
+                  style={{ width: '100px', height: '100px' }}
+                />
+              )}
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Button variant="primary" onClick={handleSave}>
+          <FaSave /> Save
+        </Button>
+      </Form>
     </Container>
   );
 };
 
-export default Products;
+export default ProductEdit;

@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Global Bootstrap CSS import
-
 import Navbar from './components/Navbar'; // Navigation bar component
 import User from './components/User';
 import Products from './components/Products';
@@ -23,6 +22,11 @@ import Reportedit from './components/Edit&Delete/Reportedit';
 import Reportview from './components/Edit&Delete/Reportview';
 import Newuser from './components/Newuser';
 import NotFound from './components/NotFound'; // 404 Component
+import Newreport from './components/Newreport';
+import Newcomment from './components/Newcomment';
+import Newcategory from './Newcategory';
+import Newreview from './components/Newreview';
+import Newproducts from './components/Newproducts';
 
 function App() {
   return (
@@ -51,6 +55,11 @@ function App() {
           <Route path="/reportview" element={<Reportview />} /> 
           <Route path="*" element={<NotFound />} />
           <Route path="/newuser" element={<Newuser />} />
+          <Route path="/newreport" element={<Newreport />} /> 
+          <Route path="/newcomment" element={<Newcomment />} /> 
+          <Route path="/newcategory" element={<Newcategory />} />
+          <Route path="/newreview" element={<Newreview />} />
+          <Route path="/newproducts" element={<Newproducts/>} />
         </Routes>
       </div>
     </Router>
