@@ -1,12 +1,10 @@
 import React from 'react';
-import { Button, InputGroup, FormControl, Container, Row, Col } from 'react-bootstrap';
-import { FaSearch } from 'react-icons/fa';
+import {  Container, Row, Col } from 'react-bootstrap';
 
 const Singleuser = () => {
   const userDetails = {
     id: '0005',
     email: 'sara@gmail.com',
-    password: 'utb873t73rut',
     name: 'Sara',
     photo: 'https://via.placeholder.com/50',
     bio: 'I love coding and developing new applications.',
@@ -15,42 +13,39 @@ const Singleuser = () => {
   };
 
   return (
-    <Container fluid className="p-4">
-      <Row className="align-items-center mb-4">
-        <Col md={6}>
-          <h2 className="fw-bold">User Details</h2>
-        </Col>
-        <Col md={6} className="text-md-end">
-          <Button variant="warning" size="md">+ Add New User</Button>
+    <Container fluid className="d-flex flex-column justify-content-center align-items-center vh-100">
+      <Row className="align-items-center mb-4 w-100">
+        <Col className="text-center">
+          <h2 className="">User Details</h2>
         </Col>
       </Row>
-      <Row className="mb-3">
-        <Col md={9}>
-          <InputGroup>
-            <FormControl
-              placeholder="Search users by name or email"
-              aria-label="Search"
-              aria-describedby="button-addon2"
-            />
-            <Button variant="outline-primary" id="button-addon2">
-              <FaSearch />
-            </Button>
-          </InputGroup>
-        </Col>
-      </Row>
-      <Row>
+      <Row className="mb-3 w-50">
         <Col>
-          <p>
-            <strong>ID:</strong> {userDetails.id} &nbsp;|&nbsp;
-            <strong>Email:</strong> {userDetails.email} &nbsp;|&nbsp;
-            <strong>Password:</strong> {userDetails.password} &nbsp;|&nbsp;
-            <strong>Name:</strong> {userDetails.name} &nbsp;|&nbsp;
-            <strong>Photo:</strong> 
-            <img src={userDetails.photo} alt="User" className="rounded-circle ms-2" style={{ width: '30px', height: '30px' }} /> &nbsp;|&nbsp;
-            <strong>Bio:</strong> {userDetails.bio} &nbsp;|&nbsp;
-            <strong>Status:</strong> {userDetails.status} &nbsp;|&nbsp;
+        </Col>
+      </Row>
+      <Row className="w-50 text-center">
+        <Col>
+          <div className="mb-4">
+            <img src={userDetails.photo} alt="User" className="rounded-circle" style={{ width: '100px', height: '100px' }} />
+          </div>
+          <div className="mb-3 h5">
+            <strong>ID:</strong> {userDetails.id}
+          </div>
+          <div className="mb-3 h5">
+            <strong>Name:</strong> {userDetails.name}
+          </div>
+          <div className="mb-3 h5">
+            <strong>Email:</strong> {userDetails.email}
+          </div>
+          <div className="mb-3 h5">
+            <strong>Bio:</strong> {userDetails.bio}
+          </div>
+          <div className="mb-3 h5">
+            <strong>Status:</strong> {userDetails.status}
+          </div>
+          <div className="mb-3 h5">
             <strong>Created At:</strong> {userDetails.createdAt}
-          </p>
+          </div>
         </Col>
       </Row>
     </Container>
@@ -58,4 +53,3 @@ const Singleuser = () => {
 };
 
 export default Singleuser;
-
