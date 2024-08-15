@@ -21,6 +21,7 @@ import Commentedit from './components/Edit&Delete/Commentedit';
 import Commentview from './components/Edit&Delete/Commentview';
 import Reportedit from './components/Edit&Delete/Reportedit';
 import Reportview from './components/Edit&Delete/Reportview';
+import Newuser from './components/Newuser';
 import NotFound from './components/NotFound'; // 404 Component
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
           <Route path="/reportedit" element={<Reportedit />} /> 
           <Route path="/reportview" element={<Reportview />} /> 
           <Route path="*" element={<NotFound />} />
+          <Route path="/newuser" element={<Newuser />} />
         </Routes>
       </div>
     </Router>

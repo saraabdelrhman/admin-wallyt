@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button, Table, InputGroup, FormControl, Container, Row, Col } from 'react-bootstrap';
-import { FaEye, FaEdit, FaTrash, FaSearch } from 'react-icons/fa'; // Import the icons
+import { FaEye, FaEdit, FaTrash, FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const UserTable = () => {
+const User = () => {
   return (
     <Container fluid className="p-4">
       <Row className="align-items-center mb-4">
@@ -11,20 +11,21 @@ const UserTable = () => {
           <h2 className="fw-bold">User Management</h2>
         </Col>
         <Col md={6} className="text-md-end">
-          <Button variant="warning" size="md">+ Add New User</Button>
+          <Link to="/newuser">
+            <Button variant="warning" size="md">+ Add New User</Button>
+          </Link>
         </Col>
       </Row>
       <Row className="mb-3">
         <Col md={9}>
-        <InputGroup>
+          <InputGroup>
             <FormControl
-              placeholder="Search products by name or brand"
+              placeholder="Search users by name or email"
               aria-label="Search"
               aria-describedby="button-addon2"
             />
             <Button variant="outline-primary" id="button-addon2">
-            <FaSearch /> {/* Consistent icon usage */}
-            <i className="bi bi-search"></i> 
+              <FaSearch /> {/* Consistent icon usage */}
             </Button>
           </InputGroup>
         </Col>
@@ -67,4 +68,4 @@ const UserTable = () => {
   );
 };
 
-export default UserTable;
+export default User;
