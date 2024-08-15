@@ -1,22 +1,17 @@
 import React, { useState } from 'react';
-import { Button, Table, InputGroup, FormControl, Container, Row, Col } from 'react-bootstrap';
-import { FaEdit, FaSearch, FaSave } from 'react-icons/fa';
+import { Button, Form, Container, Row, Col } from 'react-bootstrap';
 
 const Useredit = () => {
   // State to hold the form data
   const [userData, setUserData] = useState({
     id: '0001',
     email: 'sara@gmail.com',
-    password: 'utb873t73rut',
     name: 'Sara',
-    photo: 'https://via.placeholder.com/50',
+    photo: '',
     bio: 'I love coding and developing new applications.',
     status: 'Single',
     createdAt: '2024',
   });
-
-  // State to toggle edit mode
-  const [isEditing, setIsEditing] = useState(false);
 
   // Handle input changes
   const handleInputChange = (e) => {
@@ -27,123 +22,128 @@ const Useredit = () => {
     });
   };
 
+  // Handle file input change for photo
+  const handlePhotoChange = (e) => {
+    setUserData({
+      ...userData,
+      photo: URL.createObjectURL(e.target.files[0]),
+    });
+  };
+
   // Handle save button
   const handleSave = () => {
-    setIsEditing(false);
     // You can add code here to save the data to the backend
     console.log('Saved data:', userData);
   };
 
   return (
     <Container fluid className="p-4">
-      <Row className="mb-3">
-        <Col md={9}>
-          <InputGroup>
-            <FormControl
-              placeholder="Search users by name or email"
-              aria-label="Search"
-              aria-describedby="button-addon2"
-            />
-            <Button variant="outline-primary" id="button-addon2">
-              <FaSearch />
-            </Button>
-          </InputGroup>
-        </Col>
-      </Row>
-      <Table responsive="md" striped bordered hover className="user-table">
-        <thead className="bg-light">
-          <tr>
-            <th><input type="checkbox" /></th>
-            <th>ID</th>
-            <th>Email</th>
-            <th>Password</th>
-            <th>Name</th>
-            <th>Photo</th>
-            <th>Bio</th>
-            <th>Status</th>
-            <th>Created-At</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><input type="checkbox" /></td>
-            <td>{userData.id}</td>
-            <td>
-              {isEditing ? (
-                <FormControl
-                  name="email"
-                  value={userData.email}
-                  onChange={handleInputChange}
+      <h2 className="fw-bold mb-4">Edit User</h2>
+      <Form>
+        <Row className="mb-3">
+          <Col md={6}>
+            <Form.Group controlId="formUserID">
+              <Form.Label>ID</Form.Label>
+              <Form.Control
+                type="text"
+                name="id"
+                value={userData.id}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group controlId="formUserEmail">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={userData.email}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Row className="mb-3">
+          <Col md={6}>
+            <Form.Group controlId="formUserName">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="name"
+                value={userData.name}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Row className="mb-3">
+          <Col md={6}>
+            <Form.Group controlId="formUserPhoto">
+              <Form.Label>Photo</Form.Label>
+              <Form.Control
+                type="file"
+                accept="image/*"
+                onChange={handlePhotoChange}
+              />
+              {userData.photo && (
+                <img
+                  src={userData.photo}
+                  alt="User"
+                  className="rounded-circle mt-2"
+                  style={{ width: '100px', height: '100px' }}
                 />
-              ) : (
-                userData.email
               )}
-            </td>
-            <td>
-              {isEditing ? (
-                <FormControl
-                  name="password"
-                  type="password"
-                  value={userData.password}
-                  onChange={handleInputChange}
-                />
-              ) : (
-                userData.password
-              )}
-            </td>
-            <td>
-              {isEditing ? (
-                <FormControl
-                  name="name"
-                  value={userData.name}
-                  onChange={handleInputChange}
-                />
-              ) : (
-                userData.name
-              )}
-            </td>
-            <td>
-              <img src={userData.photo} alt="User" className="rounded-circle" />
-            </td>
-            <td>
-              {isEditing ? (
-                <FormControl
-                  as="textarea"
-                  name="bio"
-                  value={userData.bio}
-                  onChange={handleInputChange}
-                />
-              ) : (
-                userData.bio
-              )}
-            </td>
-            <td>
-              {isEditing ? (
-                <FormControl
-                  name="status"
-                  value={userData.status}
-                  onChange={handleInputChange}
-                />
-              ) : (
-                userData.status
-              )}
-            </td>
-            <td>{userData.createdAt}</td>
-            <td>
-              {isEditing ? (
-                <Button size="sm" className="me-2 mb-1 text-success" variant="light" onClick={handleSave}>
-                  <FaSave />
-                </Button>
-              ) : (
-                <Button size="sm" className="me-2 mb-1 text-success" variant="light" onClick={() => setIsEditing(true)}>
-                  <FaEdit />
-                </Button>
-              )}
-            </td>
-          </tr>
-        </tbody>
-      </Table>
+            </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group controlId="formUserStatus">
+              <Form.Label>Status</Form.Label>
+              <Form.Control
+                type="text"
+                name="status"
+                value={userData.status}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Row className="mb-3">
+          <Col md={12}>
+            <Form.Group controlId="formUserBio">
+              <Form.Label>Bio</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                name="bio"
+                value={userData.bio}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Row className="mb-3">
+          <Col md={6}>
+            <Form.Group controlId="formUserCreatedAt">
+              <Form.Label>Created At</Form.Label>
+              <Form.Control
+                type="text"
+                name="createdAt"
+                value={userData.createdAt}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Button variant="primary" onClick={handleSave}>
+          Save
+        </Button>
+      </Form>
     </Container>
   );
 };
