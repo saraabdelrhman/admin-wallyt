@@ -1,34 +1,17 @@
 import React from 'react';
-import {  Table,  Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
 const Category = () => {
   return (
-    <Container fluid className="mt-4">
-    <h2 className="fw-bold pb-2"> Category Management</h2>
-   
-    <Table responsive="md" striped bordered hover className="product-table">
-      <thead className="bg-dark text-white">
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Parent_category_id</th>
-        </tr>
-      </thead>
-      <tbody>
-       
-        <tr>
-          <td>0003</td>
-          <td>Phone</td>
-          <td>22</td>
-         
-        </tr>
-        {/* Additional rows would be dynamically generated here */}
-      </tbody>
-    </Table>
-  </Container>
-
+    <Container fluid className="mt-4 text-center">
+      <h2 className="fw-bold pb-3">Category Details</h2>
+      <div className="d-flex flex-column align-items-center">
+        <p><strong>ID:</strong> 0003</p>
+        <p><strong>Name:</strong> Phone</p>
+        <p><strong>Parent Category ID:</strong> 22</p>
+      </div>
+    </Container>
   );
 };
 
 export default Category;
-

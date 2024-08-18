@@ -12,7 +12,7 @@ const User = () => {
         </Col>
         <Col md={6} className="text-md-end">
           <Link to="/newuser">
-            <Button variant="warning" size="md">+ Add New User</Button>
+            <Button variant="warning" size="md" className=''>+ Add New User</Button>
           </Link>
         </Col>
       </Row>
@@ -25,7 +25,7 @@ const User = () => {
               aria-describedby="button-addon2"
             />
             <Button variant="outline-primary" id="button-addon2">
-              <FaSearch /> {/* Consistent icon usage */}
+              <FaSearch /> 
             </Button>
           </InputGroup>
         </Col>

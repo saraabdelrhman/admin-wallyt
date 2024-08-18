@@ -1,35 +1,19 @@
 import React from 'react';
-import { Table, Container, Row, Col } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
-const comment = () => {
+const Comment = () => {
   return (
-    <Container fluid className="mt-4">
-      <h2 className="fw-bold pb-2"> Comment  Moderation</h2>
-      <Table responsive="md" striped bordered hover className="product-table">
-        <thead className="bg-dark text-white">
-          <tr>
-            <th>ID</th>
-            <th>Review Id</th>
-            <th>User Id</th>
-            <th>Comment</th>
-            <th>Created At</th>
-          </tr>
-        </thead>
-        <tbody>
-       
-      
-          <tr>
-            <td>0003</td>
-            <td>233</td>
-            <td>787</td>
-            <td>Not bad</td>
-            <td>2024</td>
-          </tr>
-          {/* Additional rows would be dynamically generated here */}
-        </tbody>
-      </Table>
+    <Container fluid className="mt-4 text-center">
+      <h2 className="fw-bold pb-3">Comment Moderation</h2>
+      <div className="d-flex flex-column align-items-center">
+        <p><strong>ID:</strong> 0003</p>
+        <p><strong>Review ID:</strong> 233</p>
+        <p><strong>User ID:</strong> 787</p>
+        <p><strong>Comment:</strong> Not bad</p>
+        <p><strong>Created At:</strong> 2024</p>
+      </div>
     </Container>
   );
 };
 
-export default comment;
+export default Comment;

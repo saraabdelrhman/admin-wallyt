@@ -1,37 +1,20 @@
 import React from 'react';
-import {  Table,  Container, Row, Col } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
-const reportview = () => {
+const ReportView = () => {
   return (
-    <Container fluid className="mt-4">
-      <h2 className="fw-bold pb-2"> Report  Moderation</h2>
-      <Table responsive="md" striped bordered hover className="product-table">
-        <thead className="bg-dark text-white">
-          <tr>
-            <th>ID</th>
-            <th>Review Id</th>
-            <th>User Id</th>
-            <th>Report</th>
-            <th>Status</th>
-            <th>Created At</th>
-          </tr>
-        </thead>
-        <tbody>
-        
-          <tr>
-            <td>0002</td>
-            <td>8065</td>
-            <td>654</td>
-            <td>Problem</td>
-            <td>Good</td>
-            <td>2024</td>
-          </tr>
-          
-          {/* Additional rows would be dynamically generated here */}
-        </tbody>
-      </Table>
+    <Container fluid className="mt-4 text-center">
+      <h2 className="fw-bold pb-3">Report Moderation</h2>
+      <div className="d-flex flex-column align-items-center">
+        <p><strong>ID:</strong> 0002</p>
+        <p><strong>Review ID:</strong> 8065</p>
+        <p><strong>User ID:</strong> 654</p>
+        <p><strong>Report:</strong> Problem</p>
+        <p><strong>Status:</strong> Good</p>
+        <p><strong>Created At:</strong> 2024</p>
+      </div>
     </Container>
   );
 };
 
-export default reportview;
+export default ReportView;
