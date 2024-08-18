@@ -15,7 +15,7 @@ const Products = () => {
               aria-label="Search"
               aria-describedby="button-addon2"
             />
-            <Button variant="outline-primary" id="button-addon2">
+            <Button variant="outline-warning" id="button-addon2">
               <FaSearch /> {/* Replaced with FaSearch icon for consistency */}
             </Button>
           </InputGroup>

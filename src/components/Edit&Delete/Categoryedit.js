@@ -85,7 +85,7 @@ const Categoryedit = () => {
           </Col>
         </Row>
  
-        <Button variant="primary" type="submit">
+        <Button variant="warning"  type="submit">
           Add User
         </Button>
       </Form>

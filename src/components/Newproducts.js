@@ -126,7 +126,7 @@ const Newproducts = () => {
             </Form.Group>
           </Col>
         </Row>
-        <Button variant="primary" type="submit">
+        <Button variant="warning"  type="submit">
           Add Product
         </Button>
       </Form>

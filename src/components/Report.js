@@ -15,7 +15,7 @@ const Report = () => { // Capitalized component name
               aria-label="Search"
               aria-describedby="button-addon2"
             />
-             <Button variant="outline-primary" id="button-addon2">
+             <Button variant="outline-warning"  id="button-addon2">
               <FaSearch /> {/* Consistent icon usage */}
             </Button>
           </InputGroup>

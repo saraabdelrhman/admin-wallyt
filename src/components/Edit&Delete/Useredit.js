@@ -140,7 +140,7 @@ const Useredit = () => {
           </Col>
         </Row>
 
-        <Button variant="primary" onClick={handleSave}>
+        <Button variant="warning"  onClick={handleSave}>
           Save
         </Button>
       </Form>

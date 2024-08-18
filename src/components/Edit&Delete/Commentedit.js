@@ -47,7 +47,7 @@ const Commentedit = () => {
 
         <Row className="mb-3">
           <Col md={12} className="">
-            <Button variant="primary" type="submit" className="me-2">
+            <Button variant="warning"  type="submit" className="me-2">
               Save
             </Button>
           </Col>

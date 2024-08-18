@@ -2,10 +2,10 @@ import React from 'react';
 import { Button, Table, InputGroup, FormControl, Container, Row, Col } from 'react-bootstrap';
 import { FaEye, FaEdit, FaTrash, FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-
+import '../App.css';
 const User = () => {
   return (
-    <Container fluid className="p-4">
+    <Container fluid className="p-4 ">
       <Row className="align-items-center mb-4">
         <Col md={6}>
           <h2 className="fw-bold">User Management</h2>
@@ -24,7 +24,7 @@ const User = () => {
               aria-label="Search"
               aria-describedby="button-addon2"
             />
-            <Button variant="outline-primary" id="button-addon2">
+            <Button variant="outline-warning" id="button-addon2">
               <FaSearch /> 
             </Button>
           </InputGroup>

@@ -123,7 +123,7 @@ const ProductEdit = () => {
           </Col>
         </Row>
 
-        <Button variant="primary" onClick={handleSave}>
+      < Button variant="warning" onClick={handleSave}>
           <FaSave /> Save
         </Button>
       </Form>

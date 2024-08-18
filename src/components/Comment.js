@@ -15,7 +15,7 @@ const Comment = () => {
               aria-label="Search"
               aria-describedby="button-addon2"
             />
-            <Button variant="outline-primary" id="button-addon2">
+            <Button variant="outline-warning" id="button-addon2">
               <FaSearch /> {/* Consistent use of FaSearch icon */}
             </Button>
           </InputGroup>
