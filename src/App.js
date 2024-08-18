@@ -24,7 +24,7 @@ import Newuser from './components/Newuser';
 import NotFound from './components/NotFound'; // 404 Component
 import Newreport from './components/Newreport';
 import Newcomment from './components/Newcomment';
-import Newcategory from './Newcategory';
+import Newcategory from './components/Newcategory';
 import Newreview from './components/Newreview';
 import Newproducts from './components/Newproducts';
 

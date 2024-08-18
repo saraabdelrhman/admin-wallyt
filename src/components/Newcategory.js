@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import { Button, Form, Container, Row, Col } from 'react-bootstrap';
 
-const Categoryedit = () => {
+const Newuser = () => {
   const [userDetails, setUserDetails] = useState({
     id: '',
-    email: '',
     name: '',
-    photo: null, // Changed to null to hold the file object
-    bio: '',
-    status: '',
-    createdAt: '',
+    email: '',
   });
 
   const handleChange = (e) => {
@@ -33,7 +29,7 @@ const Categoryedit = () => {
     <Container fluid className="p-4">
       <Row className="align-items-center mb-4">
         <Col md={6}>
-          <h2 className="fw-bold">Edit Category</h2>
+          <h2 className="fw-bold">Add New Category</h2>
         </Col>
       </Row>
       <Form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -93,5 +89,4 @@ const Categoryedit = () => {
   );
 };
 
-export default Categoryedit;
-
+export default Newuser;

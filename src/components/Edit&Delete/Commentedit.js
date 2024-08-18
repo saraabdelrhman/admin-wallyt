@@ -1,60 +1,58 @@
 import React from 'react';
-import { Button, Table, InputGroup, FormControl, Container, Row, Col } from 'react-bootstrap';
-import {  FaEdit, FaSave, FaSearch } from 'react-icons/fa';
+import { Container, Form, Row, Col, Button } from 'react-bootstrap';
 
 const Commentedit = () => {
   return (
-    <Container fluid className="mt-4">
-      <h2 className="fw-bold pb-2"> Comment  Moderation</h2>
-      <Row className="mb-3">
-        <Col md={9}>
-        <InputGroup>
-            <FormControl
-              placeholder="Search products by name or brand"
-              aria-label="Search"
-              aria-describedby="button-addon2"
-            />
-            <Button variant="outline-primary" id="button-addon2">
-            <FaSearch /> {/* Consistent icon usage */}
-            <i className="bi bi-search"></i> 
+    <Container className="mt-4">
+      <h2 className="fw-bold pb-2">Edit Comment</h2>
+      <Form>
+        <Row className="mb-3">
+          <Col md={6}>
+            <Form.Group controlId="commentId">
+              <Form.Label>ID</Form.Label>
+              <Form.Control type="text" placeholder="Enter Comment ID" value="0003" readOnly />
+            </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group controlId="reviewId">
+              <Form.Label>Review Id</Form.Label>
+              <Form.Control type="text" placeholder="Enter Review ID" value="255" />
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Row className="mb-3">
+          <Col md={6}>
+            <Form.Group controlId="userId">
+              <Form.Label>User Id</Form.Label>
+              <Form.Control type="text" placeholder="Enter User ID" value="189" />
+            </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group controlId="createdAt">
+              <Form.Label>Created At</Form.Label>
+              <Form.Control type="text" placeholder="Enter Creation Date" value="2024-08-18" />
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Row className="mb-3">
+          <Col md={12}>
+            <Form.Group controlId="comment">
+              <Form.Label>Comment</Form.Label>
+              <Form.Control as="textarea" rows={3} placeholder="Enter Comment" value="This is a sample comment." />
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Row className="mb-3">
+          <Col md={12} className="">
+            <Button variant="primary" type="submit" className="me-2">
+              Save
             </Button>
-          </InputGroup>
-        </Col>
-        <Col md={3} className="d-flex justify-content-md-end">
-          <Button className='btn btn-warning' size="md">+ Add New Product</Button>
-        </Col>
-      </Row>
-      <Table responsive="md" striped bordered hover className="product-table">
-        <thead className="bg-dark text-white">
-          <tr>
-            <th>ID</th>
-            <th>Review Id</th>
-            <th>User Id</th>
-            <th>Comment</th>
-            <th>Created At</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-       
-      
-          <tr>
-            <td>0003</td>
-            <td>233</td>
-            <td>787</td>
-            <td>Not bad</td>
-            <td>2024</td>
-            <td>
-              <Button size="sm"  className="me-2 mb-1 text-success" variant="light">
-                <FaEdit /> 
-              </Button>
-              <Button size="sm"  className="me-2 mb-1 text-danger" variant="light">
-                <FaSave />
-              </Button>
-            </td>
-          </tr>
-        </tbody>
-      </Table>
+          </Col>
+        </Row>
+      </Form>
     </Container>
   );
 };

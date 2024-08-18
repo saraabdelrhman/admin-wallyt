@@ -21,7 +21,7 @@ const Report = () => { // Capitalized component name
           </InputGroup>
         </Col>
         <Col md={3} className="d-flex justify-content-md-end">
-          {/* Remove irrelevant button or replace with something relevant */}
+       <Link to='/newreport'>    <Button variant="warning" size="md">+ Add New Report</Button></Link>
         </Col>
       </Row>
       <Table responsive="md" striped bordered hover className="product-table">

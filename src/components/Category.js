@@ -22,7 +22,7 @@ const Category = () => {
           </InputGroup>
         </Col>
         <Col md={3} className="d-flex justify-content-md-end">
-          <Button className='btn btn-warning' size="md">+ Add New Product</Button>
+       <Link to='/Newcategory'>  <Button className='btn btn-warning' size="md">+ Add New Product</Button></Link> 
         </Col>
       </Row>
       <Table responsive="md" striped bordered hover className="product-table">
@@ -42,10 +42,10 @@ const Category = () => {
             <td>22</td>
            
             <td>
-            <Link to='/categoryedit'><Button size="sm"  className="me-2 mb-1 text-info" variant="light">
+            <Link to='/categoryview'><Button size="sm"  className="me-2 mb-1 text-info" variant="light">
                   <FaEye /> 
                 </Button></Link>
-           <Link to='/categoryview'><Button size="sm"  className="me-2 mb-1 text-success" variant="light">
+           <Link to='/categoryedit'><Button size="sm"  className="me-2 mb-1 text-success" variant="light">
                 <FaEdit /> 
               </Button></Link>   
               <Button size="sm"  className="me-2 mb-1 text-danger" variant="light">

@@ -21,7 +21,7 @@ const Review = () => { // Capitalized component name
           </InputGroup>
         </Col>
         <Col md={3} className="d-flex justify-content-md-end">
-          <Button variant="warning" size="md">+ Add New Product</Button> {/* Simplified className */}
+       <Link to='/newreview'>   <Button variant="warning" size="md">+ Add New Review</Button> </Link>
         </Col>
       </Row>
       <Table responsive="md" striped bordered hover className="product-table">
