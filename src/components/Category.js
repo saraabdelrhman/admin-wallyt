@@ -15,13 +15,13 @@ const Category = () => {
               aria-label="Search"
               aria-describedby="button-addon2"
             />
-             <Button variant="outline-warning" id="button-addon2">
+           <Button className="bg-dark" id="button-addon2">
               <FaSearch /> {/* Consistent icon usage */}
               <i className="bi bi-search"></i> 
             </Button>
           </InputGroup>
         </Col>
-        <Col md={3} className="d-flex justify-content-md-end">
+        <Col md={3} className="d-flex justify-content-md-end mt-2">
        <Link to='/Newcategory'>  <Button className='btn btn-warning' size="md">+ Add New Product</Button></Link> 
         </Col>
       </Row>

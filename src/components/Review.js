@@ -15,12 +15,12 @@ const Review = () => { // Capitalized component name
               aria-label="Search"
               aria-describedby="button-addon2"
             />
-            <Button variant="outline-warning" id="button-addon2">
+             <Button className="bg-dark" id="button-addon2">
               <FaSearch /> {/* Replaced with FaSearch icon for consistency */}
             </Button>
           </InputGroup>
         </Col>
-        <Col md={3} className="d-flex justify-content-md-end">
+        <Col md={3} className="d-flex justify-content-md-end mt-2">
        <Link to='/newreview'>   <Button variant="warning" size="md">+ Add New Review</Button> </Link>
         </Col>
       </Row>

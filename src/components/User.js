@@ -10,11 +10,6 @@ const User = () => {
         <Col md={6}>
           <h2 className="fw-bold">User Management</h2>
         </Col>
-        <Col md={6} className="text-md-end">
-          <Link to="/newuser">
-            <Button variant="warning" size="md" className=''>+ Add New User</Button>
-          </Link>
-        </Col>
       </Row>
       <Row className="mb-3">
         <Col md={9}>
@@ -24,11 +19,16 @@ const User = () => {
               aria-label="Search"
               aria-describedby="button-addon2"
             />
-            <Button variant="outline-warning" id="button-addon2">
+            <Button className="bg-dark" id="button-addon2">
               <FaSearch /> 
             </Button>
           </InputGroup>
         </Col>
+        <Col md={3} className="d-flex justify-content-md-end mt-2">
+        <Link to="/newuser">
+            <Button variant="warning" size="md" className=''>+ Add New User</Button>
+          </Link>
+          </Col >
       </Row>
       <Table responsive="md" striped bordered hover className="user-table">
         <thead className="bg-light">

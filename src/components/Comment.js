@@ -15,12 +15,12 @@ const Comment = () => {
               aria-label="Search"
               aria-describedby="button-addon2"
             />
-            <Button variant="outline-warning" id="button-addon2">
+              <Button className="bg-dark" id="button-addon2">
               <FaSearch /> {/* Consistent use of FaSearch icon */}
             </Button>
           </InputGroup>
         </Col>
-       <Col md={3} className="d-flex justify-content-md-end">
+       <Col md={3} className="d-flex justify-content-md-end mt-2">
        <Link to='/newcomment'>    <Button variant="warning" size="md">+ Add New Comment</Button></Link>
         </Col>
       </Row>
