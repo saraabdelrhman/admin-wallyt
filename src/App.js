@@ -27,6 +27,10 @@ import Newcomment from './components/Newcomment';
 import Newcategory from './components/Newcategory';
 import Newreview from './components/Newreview';
 import Newproducts from './components/Newproducts';
+import Role from './components/Role';
+import Roleedit from './components/Edit&Delete/Roleedit';
+import Roleview from './components/Edit&Delete/Roleview';
+import Newrole from './components/Newrole';
 
 function App() {
   return (
@@ -60,6 +64,10 @@ function App() {
           <Route path="/newcategory" element={<Newcategory />} />
           <Route path="/newreview" element={<Newreview />} />
           <Route path="/newproducts" element={<Newproducts/>} />
+          <Route path="/role" element={<Role/>} />
+          <Route path="/roleedit" element={<Roleedit/>} />
+          <Route path="/roleview" element={<Roleview/>} />
+          <Route path="/newrole" element={<Newrole/>} />
         </Routes>
       </div>
     </Router>
