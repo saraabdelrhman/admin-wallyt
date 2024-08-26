@@ -37,7 +37,9 @@ const User = () => {
             <th>ID</th>
             <th>Email</th>
             <th>Name</th>
-            {/* <th>Action</th> */}
+            <th>Role</th>
+            <th>Action</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -45,8 +47,9 @@ const User = () => {
             <td><input type="checkbox" /></td>
             <td>0001</td>
             <td>sara@gmail.com</td>
+            <td>Web developer</td>
             <td>Sara</td>
-            {/* <td>
+            <td>
               <Link to="/singleuser">
                 <Button size="sm" className="me-2 mb-1 text-info" variant="light">
                   <FaEye />
@@ -60,7 +63,7 @@ const User = () => {
               <Button size="sm" className="me-2 mb-1 text-danger" variant="light">
                 <FaTrash />
               </Button>
-            </td> */}
+            </td>
           </tr>
         </tbody>
       </Table>

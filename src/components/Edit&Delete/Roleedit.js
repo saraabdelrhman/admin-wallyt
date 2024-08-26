@@ -1,32 +1,43 @@
-import React, { useState } from 'react';
-import { Button, Form, Container, Row, Col } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Button, Form, Container, Row, Col } from "react-bootstrap";
 
 const Roleedit = () => {
   const [userDetails, setUserDetails] = useState({
-    id: '',
-    email: '',
-    name: '',
-    photo: null, // Changed to null to hold the file object
-    bio: '',
-    status: '',
-    createdAt: '',
+    id: "",
+    email: "",
+    name: "",
+    permissions: [], // Store selected permissions
+    status: "",
+    createdAt: "",
   });
+
+  // List of possible permissions
+  const availablePermissions = [
+    "Ceo",
+    "Business Developer",
+    "Full stack",
+    "Web Designer",
+    "Admin",
+  ];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserDetails({ ...userDetails, [name]: value });
   };
 
+  const handlePermissionChange = (e) => {
+    const { value, checked } = e.target;
+    const newPermissions = checked
+      ? [...userDetails.permissions, value]
+      : userDetails.permissions.filter((permission) => permission !== value);
+
+    setUserDetails({ ...userDetails, permissions: newPermissions });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('id', userDetails.id);
-    formData.append('name', userDetails.name);
-    formData.append('parentcategoryid', userDetails.parentcategoryid);
-
-    // You would typically send `formData` to your server here
-    console.log('User details submitted:', userDetails);
+    // You would typically send `userDetails` to your server here
+    console.log("User details submitted:", userDetails);
   };
 
   return (
@@ -36,14 +47,14 @@ const Roleedit = () => {
           <h2 className="fw-bold">Edit Role</h2>
         </Col>
       </Row>
-      <Form onSubmit={handleSubmit} encType="multipart/form-data">
+      <Form onSubmit={handleSubmit}>
         <Row className="mb-3">
           <Col md={6}>
             <Form.Group controlId="formUserName" className="mb-3">
               <Form.Label>Role</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter user name"
+                placeholder="Enter role name"
                 name="name"
                 value={userDetails.name}
                 onChange={handleChange}
@@ -51,25 +62,27 @@ const Roleedit = () => {
               />
             </Form.Group>
           </Col>
-          
         </Row>
         <Row className="mb-3">
           <Col md={12}>
-            <Form.Group controlId="formUserBio" className="mb-3">
+            <Form.Group controlId="formUserPermissions" className="mb-3">
               <Form.Label>Permissions</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                placeholder="Enter parent category id"
-                name="parentcategoryid"
-                value={userDetails.parentcategoryid}
-                onChange={handleChange}
-              />
+              <div>
+                {availablePermissions.map((permission, index) => (
+                  <Form.Check
+                    key={index}
+                    type="checkbox"
+                    label={permission}
+                    value={permission}
+                    checked={userDetails.permissions.includes(permission)}
+                    onChange={handlePermissionChange}
+                  />
+                ))}
+              </div>
             </Form.Group>
           </Col>
         </Row>
- 
-        <Button variant="warning"  type="submit">
+        <Button variant="warning" type="submit">
           Add User
         </Button>
       </Form>
@@ -78,4 +91,3 @@ const Roleedit = () => {
 };
 
 export default Roleedit;
-
