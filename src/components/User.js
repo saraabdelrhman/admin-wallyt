@@ -47,8 +47,9 @@ const User = () => {
             <td><input type="checkbox" /></td>
             <td>0001</td>
             <td>sara@gmail.com</td>
-            <td>Web developer</td>
+           
             <td>Sara</td>
+            <td>Web developer</td>
             <td>
               <Link to="/singleuser">
                 <Button size="sm" className="me-2 mb-1 text-info" variant="light">

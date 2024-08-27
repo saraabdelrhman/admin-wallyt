@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form, Container, Row, Col } from 'react-bootstrap';
 
-const Useredit = () => {
+const UserEdit = () => {
   // State to hold the form data
   const [userData, setUserData] = useState({
     id: '0001',
@@ -11,7 +11,26 @@ const Useredit = () => {
     bio: 'I love coding and developing new applications.',
     status: 'Single',
     createdAt: '2024',
+    permissions: [], // Initializing permissions state
   });
+
+  const availablePermissions = [
+    "Ceo",
+    "Business Developer",
+    "Full stack",
+    "Web Designer",
+    "Admin",
+  ];
+
+  // Handle permission change
+  const handlePermissionChange = (e) => {
+    const { value, checked } = e.target;
+    const newPermissions = checked
+      ? [...userData.permissions, value]
+      : userData.permissions.filter((permission) => permission !== value);
+
+    setUserData({ ...userData, permissions: newPermissions });
+  };
 
   // Handle input changes
   const handleInputChange = (e) => {
@@ -140,7 +159,27 @@ const Useredit = () => {
           </Col>
         </Row>
 
-        <Button variant="warning"  onClick={handleSave}>
+        <Row className="mb-3">
+          <Col md={6}>
+            <Form.Group controlId="formUserPermissions" className="mb-3">
+              <Form.Label>Permissions</Form.Label>
+              <div>
+                {availablePermissions.map((permission, index) => (
+                  <Form.Check
+                    key={index}
+                    type="checkbox"
+                    label={permission}
+                    value={permission}
+                    checked={userData.permissions.includes(permission)}
+                    onChange={handlePermissionChange}
+                  />
+                ))}
+              </div>
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Button variant="warning" onClick={handleSave}>
           Save
         </Button>
       </Form>
@@ -148,4 +187,4 @@ const Useredit = () => {
   );
 };
 
-export default Useredit;
+export default UserEdit;
