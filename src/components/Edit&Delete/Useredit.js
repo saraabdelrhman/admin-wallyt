@@ -54,6 +54,7 @@ const UserEdit = () => {
     <Container fluid className="p-4">
       <h2 className="fw-bold mb-4">Edit User</h2>
       <Form>
+        {/* ID and Email */}
         <Row className="mb-3">
           <Col md={6}>
             <Form.Group controlId="formUserID">
@@ -79,6 +80,7 @@ const UserEdit = () => {
           </Col>
         </Row>
 
+        {/* Name and Status */}
         <Row className="mb-3">
           <Col md={6}>
             <Form.Group controlId="formUserName">
@@ -91,8 +93,20 @@ const UserEdit = () => {
               />
             </Form.Group>
           </Col>
+          <Col md={6}>
+            <Form.Group controlId="formUserStatus">
+              <Form.Label>Status</Form.Label>
+              <Form.Control
+                type="text"
+                name="status"
+                value={userData.status}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+          </Col>
         </Row>
 
+        {/* Photo and Created At */}
         <Row className="mb-3">
           <Col md={6}>
             <Form.Group controlId="formUserPhoto">
@@ -113,18 +127,19 @@ const UserEdit = () => {
             </Form.Group>
           </Col>
           <Col md={6}>
-            <Form.Group controlId="formUserStatus">
-              <Form.Label>Status</Form.Label>
+            <Form.Group controlId="formUserCreatedAt">
+              <Form.Label>Created At</Form.Label>
               <Form.Control
                 type="text"
-                name="status"
-                value={userData.status}
+                name="createdAt"
+                value={userData.createdAt}
                 onChange={handleInputChange}
               />
             </Form.Group>
           </Col>
         </Row>
 
+        {/* Bio */}
         <Row className="mb-3">
           <Col md={12}>
             <Form.Group controlId="formUserBio">
@@ -134,20 +149,6 @@ const UserEdit = () => {
                 rows={3}
                 name="bio"
                 value={userData.bio}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-          </Col>
-        </Row>
-
-        <Row className="mb-3">
-          <Col md={6}>
-            <Form.Group controlId="formUserCreatedAt">
-              <Form.Label>Created At</Form.Label>
-              <Form.Control
-                type="text"
-                name="createdAt"
-                value={userData.createdAt}
                 onChange={handleInputChange}
               />
             </Form.Group>
