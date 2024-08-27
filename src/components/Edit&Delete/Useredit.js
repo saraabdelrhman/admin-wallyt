@@ -162,7 +162,7 @@ const UserEdit = () => {
         <Row className="mb-3">
           <Col md={6}>
             <Form.Group controlId="formUserPermissions" className="mb-3">
-              <Form.Label>Permissions</Form.Label>
+              <Form.Label>Roles</Form.Label>
               <div>
                 {availablePermissions.map((permission, index) => (
                   <Form.Check
