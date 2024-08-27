@@ -11,25 +11,20 @@ const UserEdit = () => {
     bio: 'I love coding and developing new applications.',
     status: 'Single',
     createdAt: '2024',
-    permissions: [], // Initializing permissions state
+    permission: '', // Single permission instead of multiple
   });
 
   const availablePermissions = [
-    "Ceo",
-    "Business Developer",
-    "Full stack",
-    "Web Designer",
-    "Admin",
+    'Ceo',
+    'Business Developer',
+    'Full stack',
+    'Web Designer',
+    'Admin',
   ];
 
   // Handle permission change
   const handlePermissionChange = (e) => {
-    const { value, checked } = e.target;
-    const newPermissions = checked
-      ? [...userData.permissions, value]
-      : userData.permissions.filter((permission) => permission !== value);
-
-    setUserData({ ...userData, permissions: newPermissions });
+    setUserData({ ...userData, permission: e.target.value });
   };
 
   // Handle input changes
@@ -159,22 +154,23 @@ const UserEdit = () => {
           </Col>
         </Row>
 
+        {/* Permissions Dropdown */}
         <Row className="mb-3">
           <Col md={6}>
-            <Form.Group controlId="formUserPermissions" className="mb-3">
-              <Form.Label>Roles</Form.Label>
-              <div>
+            <Form.Group controlId="formUserPermissions">
+              <Form.Label>Role</Form.Label>
+              <Form.Control
+                as="select"
+                value={userData.permission}
+                onChange={handlePermissionChange}
+              >
+                <option value="">Select Role</option>
                 {availablePermissions.map((permission, index) => (
-                  <Form.Check
-                    key={index}
-                    type="checkbox"
-                    label={permission}
-                    value={permission}
-                    checked={userData.permissions.includes(permission)}
-                    onChange={handlePermissionChange}
-                  />
+                  <option key={index} value={permission}>
+                    {permission}
+                  </option>
                 ))}
-              </div>
+              </Form.Control>
             </Form.Group>
           </Col>
         </Row>
