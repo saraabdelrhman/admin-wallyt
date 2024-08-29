@@ -13,11 +13,18 @@ const Roleedit = () => {
 
   // List of possible permissions
   const availablePermissions = [
-    "Ceo",
-    "Business Developer",
-    "Full stack",
-    "Web Designer",
-    "Admin",
+"ADD_CATEGORY",
+"UPDATE_CATEGORY",
+"DELETE_CATEGORY",
+"ADD_PRODUCT",
+"UPDATE_PRODUCT",
+"DELETE_PRODUCT",
+"UPDATE_REPORT",
+"DELETE_REPORT",
+"GET_ALL_USERS",
+"ADD_ROLE",
+"ADD_PERMISSION",
+"UPDATE_PERMISSION",
   ];
 
   const handleChange = (e) => {
