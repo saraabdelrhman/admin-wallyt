@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Form, Container, Row, Col } from 'react-bootstrap';
 
 const UserEdit = () => {
-  // State to hold the form data
+  // Initialize with fake data
   const [userData, setUserData] = useState({
     id: '0001',
     email: 'sara@gmail.com',
@@ -11,30 +11,37 @@ const UserEdit = () => {
     bio: 'I love coding and developing new applications.',
     status: 'Single',
     createdAt: '2024',
-    permission: '', // Single permission instead of multiple
+    permission: '',
   });
 
   const availablePermissions = [
-  "ADD_CATEGORY",
-"UPDATE_CATEGORY",
-"DELETE_CATEGORY",
-"ADD_PRODUCT",
-"UPDATE_PRODUCT",
-"DELETE_PRODUCT",
-"UPDATE_REPORT",
-"DELETE_REPORT",
-"GET_ALL_USERS",
-"ADD_ROLE",
-"ADD_PERMISSION",
-"UPDATE_PERMISSION",
+    "ADD_CATEGORY", "UPDATE_CATEGORY", "DELETE_CATEGORY",
+    "ADD_PRODUCT", "UPDATE_PRODUCT", "DELETE_PRODUCT",
+    "UPDATE_REPORT", "DELETE_REPORT", "GET_ALL_USERS",
+    "ADD_ROLE", "ADD_PERMISSION", "UPDATE_PERMISSION",
   ];
 
-  // Handle permission change
-  const handlePermissionChange = (e) => {
-    setUserData({ ...userData, permission: e.target.value });
-  };
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const url = 'https://wallyt.com/profile/0001'; 
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        if (data) {
+          setUserData({
+            ...userData,
+            ...data,
+            photo: data.photo || userData.photo 
+          });
+        }
+      } catch (error) {
+        console.error('Failed to fetch user details:', error);
+      }
+    };
 
-  // Handle input changes
+    setTimeout(fetchUserData, 2000);  
+  }, []);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUserData({
@@ -43,17 +50,21 @@ const UserEdit = () => {
     });
   };
 
-  // Handle file input change for photo
   const handlePhotoChange = (e) => {
-    setUserData({
-      ...userData,
-      photo: URL.createObjectURL(e.target.files[0]),
-    });
+    if (e.target.files && e.target.files[0]) {
+      const fileReader = new FileReader();
+      fileReader.onload = (ev) => {
+        setUserData({ ...userData, photo: ev.target.result });
+      };
+      fileReader.readAsDataURL(e.target.files[0]);
+    }
   };
 
-  // Handle save button
+  const handlePermissionChange = (e) => {
+    setUserData({ ...userData, permission: e.target.value });
+  };
+
   const handleSave = () => {
-    // You can add code here to save the data to the backend
     console.log('Saved data:', userData);
   };
 
@@ -71,6 +82,7 @@ const UserEdit = () => {
                 name="id"
                 value={userData.id}
                 onChange={handleInputChange}
+                readOnly 
               />
             </Form.Group>
           </Col>
@@ -87,7 +99,6 @@ const UserEdit = () => {
           </Col>
         </Row>
 
-        {/* Name and Status */}
         <Row className="mb-3">
           <Col md={6}>
             <Form.Group controlId="formUserName">
@@ -113,7 +124,6 @@ const UserEdit = () => {
           </Col>
         </Row>
 
-        {/* Photo and Created At */}
         <Row className="mb-3">
           <Col md={6}>
             <Form.Group controlId="formUserPhoto">
@@ -192,3 +202,4 @@ const UserEdit = () => {
 };
 
 export default UserEdit;
+

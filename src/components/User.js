@@ -5,7 +5,13 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 
 const Profile = () => {
-  const [profile, setProfile] = useState(null); // Profile data
+  // Initialize with mock data
+  const [profile, setProfile] = useState({
+    id: '1',
+    email: 'john.doe@example.com',
+    name: 'John Doe',
+    role: 'Admin'
+  });
   const [loading, setLoading] = useState(true); // Loading state for fetching data
   const [error, setError] = useState(null); // Error handling
 
@@ -13,12 +19,12 @@ const Profile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await fetch('https://wallyt.com/api/profile'); // Your API endpoint to get profile
+        const response = await fetch('https://wallyt.com/profile'); // Your API endpoint to get profile
         if (!response.ok) {
           throw new Error('Failed to fetch profile data');
         }
         const data = await response.json();
-        setProfile(data); // Set profile data
+        setProfile(data); // Set actual profile data
         setLoading(false); // Set loading to false
       } catch (error) {
         setError(error.message); // Handle error
@@ -26,7 +32,7 @@ const Profile = () => {
       }
     };
 
-    fetchProfile();
+    setTimeout(fetchProfile, 2000); // Simulate network delay
   }, []);
 
   // Delete profile from the database (DELETE request)
@@ -86,23 +92,16 @@ const Profile = () => {
             <td>{loading ? 'Loading...' : profile ? profile.name : 'N/A'}</td>
             <td>{loading ? 'Loading...' : profile ? profile.role : 'N/A'}</td>
             <td>
-              {/* View Profile Button */}
-              <Link to={'/userview'}>
+              <Link to={'/singleuser'}>
                 <Button size="sm" className="me-2 mb-1 text-info" variant="light" disabled={loading || !profile}>
                   <FaEye title="View Profile" />
                 </Button>
               </Link>
-
-              {/* Edit Profile Button */}
-             {/* Edit Profile Button */}
-<Link to={'/useredit'}>
-  <Button size="sm" className="me-2 mb-1 text-success" variant="light" disabled={loading || !profile}>
-    <FaEdit title="Edit Profile" />
-  </Button>
-</Link>
-
-
-              {/* Delete Profile Button */}
+              <Link to={'/useredit'}>
+                <Button size="sm" className="me-2 mb-1 text-success" variant="light" disabled={loading || !profile}>
+                  <FaEdit title="Edit Profile" />
+                </Button>
+              </Link>
               <Button 
                 size="sm" 
                 className="me-2 mb-1 text-danger" 
@@ -121,4 +120,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
