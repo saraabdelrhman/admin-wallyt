@@ -22,7 +22,7 @@ const Category = () => {
           </InputGroup>
         </Col>
         <Col md={3} className="d-flex justify-content-md-end mt-2">
-       <Link to='/Newcategory'>  <Button className='btn btn-warning' size="md">+ Add New Product</Button></Link> 
+       <Link to='/Newcategory'>  <Button className='btn btn-warning' size="md">+ Add New Category</Button></Link> 
         </Col>
       </Row>
       <Table responsive="md" striped bordered hover className="product-table">

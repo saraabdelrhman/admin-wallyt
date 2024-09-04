@@ -1,68 +1,116 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Table, InputGroup, FormControl, Container, Row, Col } from 'react-bootstrap';
 import { FaEye, FaEdit, FaTrash, FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import '../App.css';
-const User = () => {
+
+const Profile = () => {
+  const [profile, setProfile] = useState(null); // Profile data
+  const [loading, setLoading] = useState(true); // Loading state for fetching data
+  const [error, setError] = useState(null); // Error handling
+
+  // Fetch profile data from the database (GET request)
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const response = await fetch('https://wallyt.com/api/profile'); // Your API endpoint to get profile
+        if (!response.ok) {
+          throw new Error('Failed to fetch profile data');
+        }
+        const data = await response.json();
+        setProfile(data); // Set profile data
+        setLoading(false); // Set loading to false
+      } catch (error) {
+        setError(error.message); // Handle error
+        setLoading(false); // Stop loading
+      }
+    };
+
+    fetchProfile();
+  }, []);
+
+  // Delete profile from the database (DELETE request)
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure you want to delete this profile? This action cannot be undone.")) {
+      try {
+        const response = await fetch(`https://wallyt.com/api/profile/${id}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        if (!response.ok) {
+          throw new Error('Failed to delete profile');
+        }
+        alert('Profile deleted successfully!');
+        setProfile(null); // Optionally clear the profile data
+      } catch (error) {
+        alert(`Error deleting profile: ${error.message}`);
+      }
+    }
+  };
+
   return (
-    <Container fluid className="p-4 ">
+    <Container fluid className="p-4">
       <Row className="align-items-center mb-4">
         <Col md={6}>
-          <h2 className="fw-bold">User Management</h2>
+          <h2 className="fw-bold">Profile Management</h2>
         </Col>
-      </Row>
-      <Row className="mb-3">
-        <Col md={9}>
+        <Col md={6}>
           <InputGroup>
             <FormControl
-              placeholder="Search users by name or email"
+              placeholder="Search by name or email"
               aria-label="Search"
-              aria-describedby="button-addon2"
             />
             <Button className="bg-dark" id="button-addon2">
-              <FaSearch /> 
+              <FaSearch />
             </Button>
           </InputGroup>
         </Col>
-        <Col md={3} className="d-flex justify-content-md-end mt-2">
-        <Link to="/newuser">
-            <Button variant="warning" size="md" className=''>+ Add New User</Button>
-          </Link>
-          </Col >
       </Row>
+
       <Table responsive="md" striped bordered hover className="user-table">
         <thead className="bg-light">
           <tr>
-            <th><input type="checkbox" /></th>
             <th>ID</th>
             <th>Email</th>
             <th>Name</th>
             <th>Role</th>
-            <th>Action</th>
-            
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><input type="checkbox" /></td>
-            <td>0001</td>
-            <td>sara@gmail.com</td>
-           
-            <td>Sara</td>
-            <td>Web developer</td>
+            <td>{loading ? 'Loading...' : profile ? profile.id : 'N/A'}</td>
+            <td>{loading ? 'Loading...' : profile ? profile.email : 'N/A'}</td>
+            <td>{loading ? 'Loading...' : profile ? profile.name : 'N/A'}</td>
+            <td>{loading ? 'Loading...' : profile ? profile.role : 'N/A'}</td>
             <td>
-              <Link to="/singleuser">
-                <Button size="sm" className="me-2 mb-1 text-info" variant="light">
-                  <FaEye />
+              {/* View Profile Button */}
+              <Link to={'/userview'}>
+                <Button size="sm" className="me-2 mb-1 text-info" variant="light" disabled={loading || !profile}>
+                  <FaEye title="View Profile" />
                 </Button>
               </Link>
-              <Link to="/Useredit">
-                <Button size="sm" className="me-2 mb-1 text-success" variant="light">
-                  <FaEdit />
-                </Button>
-              </Link>
-              <Button size="sm" className="me-2 mb-1 text-danger" variant="light">
-                <FaTrash />
+
+              {/* Edit Profile Button */}
+             {/* Edit Profile Button */}
+<Link to={'/useredit'}>
+  <Button size="sm" className="me-2 mb-1 text-success" variant="light" disabled={loading || !profile}>
+    <FaEdit title="Edit Profile" />
+  </Button>
+</Link>
+
+
+              {/* Delete Profile Button */}
+              <Button 
+                size="sm" 
+                className="me-2 mb-1 text-danger" 
+                variant="light" 
+                onClick={() => profile && handleDelete(profile.id)}
+                disabled={loading || !profile}
+              >
+                <FaTrash title="Delete Profile" />
               </Button>
             </td>
           </tr>
@@ -72,4 +120,5 @@ const User = () => {
   );
 };
 
-export default User;
+export default Profile;
+
