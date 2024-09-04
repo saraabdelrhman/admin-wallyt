@@ -12,30 +12,28 @@ const Profile = () => {
     name: 'John Doe',
     role: 'Admin'
   });
-  const [loading, setLoading] = useState(true); // Loading state for fetching data
-  const [error, setError] = useState(null); // Error handling
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null); 
 
-  // Fetch profile data from the database (GET request)
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await fetch('https://wallyt.com/profile'); // Your API endpoint to get profile
+        const response = await fetch('https://wallyt.com/profile'); 
         if (!response.ok) {
           throw new Error('Failed to fetch profile data');
         }
         const data = await response.json();
-        setProfile(data); // Set actual profile data
-        setLoading(false); // Set loading to false
+        setProfile(data); 
+        setLoading(false);
       } catch (error) {
-        setError(error.message); // Handle error
-        setLoading(false); // Stop loading
+        setError(error.message);
+        setLoading(false); 
       }
     };
 
-    setTimeout(fetchProfile, 2000); // Simulate network delay
+    setTimeout(fetchProfile, 2000);
   }, []);
 
-  // Delete profile from the database (DELETE request)
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this profile? This action cannot be undone.")) {
       try {
