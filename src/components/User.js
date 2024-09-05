@@ -23,7 +23,7 @@ const Users = () => {
     const fetchUsers = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`https://wallyt.com/categories?page=${page}&size=${size}`);
+        const response = await fetch(`https://wallyt.com/users?page=${page}&size=${size}`);
         if (!response.ok) {
           throw new Error('Failed to fetch users data');
         }
