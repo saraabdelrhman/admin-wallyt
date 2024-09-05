@@ -1,34 +1,56 @@
-import React, { useState, useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 
-const Singleuser = () => {
-  // Initialize with mock data
+const Singleuser = ({ userId }) => {
   const [userDetails, setUserDetails] = useState({
-    id: "1",
-    name: "Jane Doe",
-    email: "jane.doe@example.com",
-    bio: "Developer at Tech Co.",
-    status: "Active",
-    createdAt: "2022-01-01",
-    photo: "https://via.placeholder.com/100",
+    id: '',
+    name: '',
+    email: '',
+    bio: '',
+    status: '',
+    createdAt: '',
+    photo: 'https://via.placeholder.com/100',  // Default placeholder image
   });
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch("https://wallyt.com/profile/1");
+        const response = await fetch(`https://wallyt.com/profile/${userId}`); // Dynamic URL based on userId
         if (!response.ok) {
-          throw new Error("Failed to fetch user details");
+          throw new Error('Failed to fetch user details');
         }
         const data = await response.json();
-        setUserDetails(data); // Update with actual data
+        setUserDetails({
+          ...data,
+          photo: data.photo || 'https://via.placeholder.com/100'  // Use fetched photo or placeholder
+        });
+        setLoading(false);
       } catch (error) {
-        console.error("Error fetching user details:", error);
+        console.error('Error fetching user details:', error);
+        setError(error.message);
+
+        // Set fallback fake data
+        setUserDetails({
+          id: '0000',
+          name: 'John Doe',
+          email: 'johndoe@example.com',
+          bio: 'This is a fallback bio. Failed to fetch the actual data.',
+          status: 'Unknown',
+          createdAt: '1970-01-01',
+          photo: 'https://via.placeholder.com/100',
+        });
+
+        setLoading(false); // Stop loading even if there is an error
       }
     };
 
-    setTimeout(fetchUserData, 2000); 
-  }, []);
+    fetchUserData();
+  }, [userId]);  // Dependency array includes userId to refetch when it changes
+
+  if (loading) return <Container>Loading...</Container>;
 
   return (
     <Container
@@ -38,6 +60,7 @@ const Singleuser = () => {
       <Row className="align-items-center mb-4 w-100">
         <Col className="text-center">
           <h2>User Details</h2>
+          {error && <div className="text-danger">Error: {error}. Showing fallback data.</div>}
         </Col>
       </Row>
       <Row className="mb-3 w-50 justify-content-center">

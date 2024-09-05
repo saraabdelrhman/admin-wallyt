@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 
 const Profile = () => {
-  // Initialize with mock data
   const [profile, setProfile] = useState({
     id: '1',
     email: 'john.doe@example.com',
@@ -37,7 +36,7 @@ const Profile = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this profile? This action cannot be undone.")) {
       try {
-        const response = await fetch(`https://wallyt.com/api/profile/${id}`, {
+        const response = await fetch(`https://wallyt.com/profile/${id}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json'

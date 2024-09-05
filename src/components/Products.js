@@ -1,9 +1,57 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Table, InputGroup, FormControl, Container, Row, Col } from 'react-bootstrap';
 import { FaEye, FaEdit, FaTrash, FaSearch } from 'react-icons/fa'; // Added FaSearch
 import { Link } from 'react-router-dom';
 
 const Products = () => {
+    const [product, setProduct] = useState({
+      id: '1',
+      name: 'John Doe',
+      categoryid: '585',
+      brand: 'samsung'
+    });
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+      const fetchProduct = async () => {
+        try {
+          const response = await fetch('https://wallyt.com/product'); // Your API endpoint to fetch product data
+          if (!response.ok) {
+            throw new Error('Failed to fetch product data');
+          }
+          const data = await response.json();
+          setProduct(data); 
+          setLoading(false);
+        } catch (error) {
+          setError(error.message);
+          setLoading(false);
+        }
+      };
+
+      setTimeout(fetchProduct, 2000);
+    }, []);
+
+    const handleDelete = async (id) => {
+      if (window.confirm("Are you sure you want to delete this product? This action cannot be undone.")) {
+        try {
+          const response = await fetch(`https://wallyt.com/product/${id}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+          if (!response.ok) {
+            throw new Error('Failed to delete product');
+          }
+          alert('Product deleted successfully!');
+          setProduct(null); // Optionally clear the product data after deletion
+        } catch (error) {
+          alert(`Error deleting product: ${error.message}`);
+        }
+      }
+    };
+
   return (
     <Container fluid className="mt-4">
       <h2 className="fw-bold pb-2">Product Management</h2>
@@ -21,7 +69,9 @@ const Products = () => {
           </InputGroup>
         </Col>
         <Col md={3} className="d-flex justify-content-md-end mt-2">
-        <Link to='/newproducts'> <Button variant="warning" size="md">+ Add New Product</Button> </Link> 
+          <Link to='/newproducts'>
+            <Button variant="warning" size="md">+ Add New Product</Button>
+          </Link>
         </Col>
       </Row>
       <Table responsive="md" striped bordered hover className="product-table">
@@ -36,27 +86,32 @@ const Products = () => {
         </thead>
         <tbody>
           <tr>
-            <td>0003</td>
-            <td>Laptop</td>
-            <td>5525</td>
-            <td>Apple</td>
+            <td>{loading ? 'Loading...' : product ? product.id : 'N/A'}</td>
+            <td>{loading ? 'Loading...' : product ? product.name : 'N/A'}</td>
+            <td>{loading ? 'Loading...' : product ? product.categoryid : 'N/A'}</td> {/* Fixed to use categoryid */}
+            <td>{loading ? 'Loading...' : product ? product.brand : 'N/A'}</td> {/* Fixed brand typo */}
             <td>
-              <Link to="/productview">
-                <Button size="sm" className="me-2 mb-1 text-info" variant="light">
+              <Link to={'/productview'}>
+                <Button size="sm" className="me-2 mb-1 text-info" variant="light" disabled={loading || !product}>
                   <FaEye />
                 </Button>
               </Link>
-              <Link to="/productedit">
-                <Button size="sm" className="me-2 mb-1 text-success" variant="light">
+              <Link to={'/productedit'}>
+                <Button size="sm" className="me-2 mb-1 text-success" variant="light" disabled={loading || !product}>
                   <FaEdit />
                 </Button>
               </Link>
-              <Button size="sm" className="me-2 mb-1 text-danger" variant="light">
+              <Button 
+                size="sm" 
+                className="me-2 mb-1 text-danger" 
+                variant="light" 
+                onClick={() => product && handleDelete(product.id)}
+                disabled={loading || !product}
+              >
                 <FaTrash />
               </Button>
             </td>
           </tr>
-          {/* Additional rows would be dynamically generated here */}
         </tbody>
       </Table>
     </Container>
