@@ -13,11 +13,14 @@ const Users = () => {
   const [totalPages, setTotalPages] = useState(1); // Total pages
 
   // Fake data to be used in case of a fetch error
-  const fakeData = [
-    { id: '1', email: 'fake.john@example.com', name: 'John Doe', role: 'Admin' },
-    { id: '2', email: 'fake.jane@example.com', name: 'Jane Doe', role: 'User' },
-    { id: '3', email: 'fake.jack@example.com', name: 'Jack Smith', role: 'Moderator' },
-  ];
+  const fakeData = {
+    users: [
+      { id: '1', email: 'fake.john@example.com', name: 'John Doe', role: 'Admin' },
+      { id: '2', email: 'fake.jane@example.com', name: 'Jane Doe', role: 'User' },
+      { id: '3', email: 'fake.jack@example.com', name: 'Jack Smith', role: 'Moderator' },
+    ],
+    totalPages: 1 // Assuming there is only 1 page of fake data
+  };
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -28,11 +31,12 @@ const Users = () => {
           throw new Error('Failed to fetch users data');
         }
         const data = await response.json();
-        setUsers(data.content); // Assuming data contains users in a 'content' field
+        setUsers(data.users); // Assuming `users` is an array in the API response
         setTotalPages(data.totalPages); // Assuming total pages info is provided in 'totalPages'
       } catch (error) {
         setError(error.message);
-        setUsers(fakeData); // Use fake data if the API request fails
+        setUsers(fakeData.users); // Use fake data if the API request fails
+        setTotalPages(fakeData.totalPages);
       } finally {
         setLoading(false);
       }
@@ -70,7 +74,7 @@ const Users = () => {
   const handleSizeChange = (event) => {
     const newSize = parseInt(event.target.value);
     setSize(newSize); 
-    setPage(0); 
+    setPage(0); // Reset to page 0 when size changes
   };
 
   return (
@@ -89,6 +93,7 @@ const Users = () => {
         </Col>
       </Row>
 
+      {/* Items per page selection */}
       <Row className="mb-4">
         <Col>
           <Form.Label>Items per page:</Form.Label>
@@ -101,6 +106,7 @@ const Users = () => {
         </Col>
       </Row>
 
+      {/* Users Table */}
       <Row className="flex-grow-1">
         <Table responsive="md" striped bordered hover className="user-table">
           <thead className="bg-light">
@@ -151,7 +157,7 @@ const Users = () => {
         </Table>
       </Row>
 
-      {/* Pagination at the Footer */}
+      {/* Pagination */}
       <Row className="justify-content-center mt-auto">
         <nav aria-label="Page navigation">
           <ul className="pagination justify-content-center">
@@ -180,5 +186,3 @@ const Users = () => {
 };
 
 export default Users;
-
-
