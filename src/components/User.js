@@ -104,6 +104,11 @@ const Users = () => {
             <option value="100">100</option>
           </Form.Select>
         </Col>
+        <Col md={3} className="d-flex justify-content-md-end mt-2">
+          <Link to='/newuser'>
+            <Button variant="warning" size="md">+ Add User</Button>
+          </Link>
+        </Col>
       </Row>
 
       {/* Users Table */}
@@ -131,12 +136,14 @@ const Users = () => {
                   <td>{user.name}</td>
                   <td>{user.role}</td>
                   <td>
-                    <Link to={`/singleuser/${user.id}`}>
+                    {/* <Link to={`/singleuser/${user.id}`}> */}
+                    <Link to={'/singleuser'}>
                       <Button size="sm" className="me-2 mb-1 text-info" variant="light">
                         <FaEye title="View User" />
                       </Button>
                     </Link>
-                    <Link to={`/useredit/${user.id}`}>
+                    {/* <Link to={`/useredit/${user.id}`}> */}
+                    <Link to={'/useredit'}>
                       <Button size="sm" className="me-2 mb-1 text-success" variant="light">
                         <FaEdit title="Edit User" />
                       </Button>
