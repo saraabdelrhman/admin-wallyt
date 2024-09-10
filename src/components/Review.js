@@ -140,12 +140,14 @@ const Review = () => {
                 <td>{review.userId}</td>
                 <td>{review.rating}</td>
                 <td>
-                  <Link to={`/reviewview/${review.id}`}>
+                  {/* <Link to={`/reviewview/${review.id}`}> */}
+                  <Link to={'/reviewview'}>
                     <Button size="sm" className="me-2 mb-1 text-info" variant="light">
                       <FaEye />
                     </Button>
                   </Link>
-                  <Link to={`/reviewedit/${review.id}`}>
+                  {/* <Link to={`/reviewedit/${review.id}`}> */}
+                  <Link to={'/reviewedit'}>
                     <Button size="sm" className="me-2 mb-1 text-success" variant="light">
                       <FaEdit />
                     </Button>

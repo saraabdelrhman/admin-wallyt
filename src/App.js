@@ -30,7 +30,11 @@ import Newproducts from './components/Newproducts';
 import Role from './components/Role';
 import Roleedit from './components/Edit&Delete/Roleedit';
 import Roleview from './components/Edit&Delete/Roleview';
+import Permissionsedit from './components/Edit&Delete/Permissionsedit.js';
+import Permissionsview from './components/Edit&Delete/Permissionsview';
 import Newrole from './components/Newrole';
+import Permissions from './components/Permissions.js';
+import Newpermissions from './components/Newpermission.js';
 
 function App() {
   return (
@@ -68,6 +72,10 @@ function App() {
           <Route path="/roleedit" element={<Roleedit/>} />
           <Route path="/roleview" element={<Roleview/>} />
           <Route path="/newrole" element={<Newrole/>} />
+          <Route path="/permissions" element={<Permissions/>} />
+          <Route path="/permissionsedit" element={<Permissionsedit/>} />
+          <Route path="/permissionsview" element={<Permissionsview/>} />
+          <Route path="/newpermissionsview" element={<Newpermissions/>} />
         </Routes>
       </div>
     </Router>

@@ -140,12 +140,14 @@ const Report = () => {
                 <td>{report.Userid}</td>
                 <td>{report.report}</td>
                 <td>
-                  <Link to={`/reportview/${report.id}`}>
+                  {/* <Link to={`/reportview/${report.id}`}> */}
+                  <Link to={'/reportview'}>
                     <Button size="sm" className="me-2 mb-1 text-info" variant="light">
                       <FaEye />
                     </Button>
                   </Link>
-                  <Link to={`/reportedit/${report.id}`}>
+                  {/* <Link to={`/reportedit/${report.id}`}> */}
+                  <Link to={'/reportedit'}>
                     <Button size="sm" className="me-2 mb-1 text-success" variant="light">
                       <FaEdit />
                     </Button>

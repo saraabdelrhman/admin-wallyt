@@ -12,14 +12,13 @@ const Role = () => {
   const [size, setSize] = useState(10); // Default page size
   const [totalPages, setTotalPages] = useState(1); // Total pages
 
-  // Fake data to use if the fetch fails
   const fakeData = {
     roles: [
-      { id: '1', role: 'Admin', permissions: 'Full Access' },
-      { id: '2', role: 'Editor', permissions: 'Edit Content' },
-      { id: '3', role: 'Viewer', permissions: 'View Only' },
-      { id: '4', role: 'Moderator', permissions: 'Manage Comments' },
-      { id: '5', role: 'Contributor', permissions: 'Submit Content' }
+      { id: '1', name: 'Admin', permissions: 'Full Access' },
+      { id: '2', name: 'Editor', permissions: 'Edit Content' },
+      { id: '3', name: 'Viewer', permissions: 'View Only' },
+      { id: '4', name: 'Moderator', permissions: 'Manage Comments' },
+      { id: '5', name: 'Contributor', permissions: 'Submit Content' }
     ],
     totalPages: 1  // Assume only 1 page of fake data
   };
@@ -98,7 +97,7 @@ const Role = () => {
         {/* Add New Role Button */}
         <Col md={3} className="d-flex justify-content-md-end mt-2">
           <Link to='/newrole'>
-            <Button className='btn btn-warning' size="md">+ Add New Role</Button>
+            <Button className='btn btn-warning' size="md">+ Add New Permissions</Button>
           </Link> 
         </Col>
       </Row>
@@ -122,7 +121,7 @@ const Role = () => {
       <Table responsive="md" striped bordered hover className="product-table">
         <thead className="bg-dark text-white">
           <tr>
-            <th>Role</th>
+            <th>name</th>
             <th>Permissions</th>
             <th>Actions</th>
           </tr>
@@ -133,17 +132,17 @@ const Role = () => {
           ) : (
             roles.map(role => (
               <tr key={role.id}>
-                <td>{role.role}</td>
+                <td>{role.name}</td>
                 <td>{role.permissions}</td>
                 <td>
                   {/* <Link to={`/roleview/${role.id}`}> */}
-                  <Link to={'/roleview'}>
+                  <Link to={'/permissionsview'}>
                     <Button size="sm" className="me-2 mb-1 text-info" variant="light">
                       <FaEye />
                     </Button>
                   </Link>
                   {/* <Link to={`/roleedit/${role.id}`}> */}
-                  <Link to={'/roleedit'}>
+                  <Link to={'/permissionsedit'}>
                     <Button size="sm" className="me-2 mb-1 text-success" variant="light">
                       <FaEdit />
                     </Button>
