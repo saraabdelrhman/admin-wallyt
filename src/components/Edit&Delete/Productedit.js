@@ -27,9 +27,27 @@ const ProductEdit = () => {
     });
   };
 
-  const handleSave = () => {
-    // Here you would typically save the updated product data to your backend
-    console.log('Saved product:', product);
+  const handleSave = async () => {
+    try {
+      const response = await fetch(`https://wallyt/products/${product.id}`, {
+        method: 'PUT', // 
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(product), 
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update the product');
+      }
+
+      const updatedProduct = await response.json();
+      console.log('Updated product:', updatedProduct);  // For now, log the result
+      // You can show a success message to the user here
+    } catch (error) {
+      console.error('Error saving product:', error);
+      // Handle error (show message to user, etc.)
+    }
   };
 
   return (
@@ -123,7 +141,7 @@ const ProductEdit = () => {
           </Col>
         </Row>
 
-      < Button variant="warning" onClick={handleSave}>
+        <Button variant="warning" onClick={handleSave}>
           <FaSave /> Save
         </Button>
       </Form>

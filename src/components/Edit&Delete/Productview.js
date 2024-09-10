@@ -8,7 +8,7 @@ const Products = ({ productId }) => {
     categoryId: '',
     brand: '',
     description: '',
-    image: 'https://via.placeholder.com/50'  // Default placeholder image
+    image: 'https://via.placeholder.com/150'  // Default placeholder image
   });
 
   const [loading, setLoading] = useState(true);
@@ -17,7 +17,7 @@ const Products = ({ productId }) => {
   useEffect(() => {
     const fetchProductData = async () => {
       try {
-        const response = await fetch(`https://wallyt.com/product/${productId}`); // Adjust to your API endpoint
+        const response = await fetch(`https://wallyt.com/product/images${productId}`); // Adjust to your API endpoint
         if (!response.ok) {
           throw new Error('Failed to fetch product details');
         }
@@ -28,7 +28,7 @@ const Products = ({ productId }) => {
           categoryId: data.categoryId,
           brand: data.brand,
           description: data.description,
-          image: data.image || 'https://via.placeholder.com/50'  // Use fetched image or placeholder
+          image: data.image || 'https://via.placeholder.com/150'  // Use fetched image or placeholder
         });
         setLoading(false);
       } catch (error) {
@@ -42,7 +42,7 @@ const Products = ({ productId }) => {
           categoryId: '5525',
           brand: 'Apple',
           description: 'For learning',
-          image: 'https://via.placeholder.com/50'
+          image: 'https://via.placeholder.com/150'
         });
 
         setLoading(false);
@@ -66,7 +66,12 @@ const Products = ({ productId }) => {
         <p><strong>Description:</strong> {productDetails.description}</p>
         <div className="d-flex flex-column align-items-center">
           <strong>Image:</strong>
-          <img src={productDetails.image} alt="Product" className="rounded-circle mt-2" />
+          <img
+            src={productDetails.image}
+            alt={productDetails.name}
+            className="rounded-circle mt-2"
+            style={{ width: '150px', height: '150px' }} // Custom size for the product image
+          />
         </div>
       </div>
     </Container>

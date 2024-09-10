@@ -20,7 +20,7 @@ const Newproducts = () => {
     setProductDetails({ ...productDetails, photo: e.target.files[0] });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('id', productDetails.id);
@@ -29,10 +29,24 @@ const Newproducts = () => {
     formData.append('brand', productDetails.brand);
     formData.append('description', productDetails.description);
     formData.append('photo', productDetails.photo);
-
-    // You would typically send `formData` to your server here
-    console.log('Product details submitted:', productDetails);
+  
+    try {
+      const response = await fetch('https://wallyt.com/products/images', {
+        method: 'POST',
+        body: formData,
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Product details submitted:', data);
+      } else {
+        console.error('Error submitting product details:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error uploading product:', error);
+    }
   };
+  
 
   return (
     <Container fluid className="p-4">

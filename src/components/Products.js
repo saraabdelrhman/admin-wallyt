@@ -140,12 +140,14 @@ const Products = () => {
                 <td>{product.categoryid}</td>
                 <td>{product.brand}</td>
                 <td>
-                  <Link to={`/productview/${product.id}`}>
+                  {/* <Link to={`/productview/${product.id}`}> */}
+                  <Link to={'/productview'}>
                     <Button size="sm" className="me-2 mb-1 text-info" variant="light">
                       <FaEye />
                     </Button>
                   </Link>
-                  <Link to={`/productedit/${product.id}`}>
+                  {/* <Link to={`/productedit/${product.id}`}> */}
+                  <Link to={'/productedit'}>
                     <Button size="sm" className="me-2 mb-1 text-success" variant="light">
                       <FaEdit />
                     </Button>
