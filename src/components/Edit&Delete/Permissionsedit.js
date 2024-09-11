@@ -70,8 +70,8 @@ const Roleedit = () => {
             </Form.Group>
           </Col>
         </Row>
-        <Row className="mb-3">
-          <Col md={12}>
+        {/* <Row className="mb-3"> */}
+          {/* <Col md={12}>
             <Form.Group controlId="formUserPermissions" className="mb-3">
               <Form.Label>Permissions</Form.Label>
               <div>
@@ -88,7 +88,7 @@ const Roleedit = () => {
               </div>
             </Form.Group>
           </Col>
-        </Row>
+        </Row> */}
         <Button variant="warning" type="submit">
           Add User
         </Button>
