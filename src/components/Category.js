@@ -112,7 +112,7 @@ const Category = () => {
           </img>
         </Col>
       </Row>
-<h2 className='fw-bold'>User</h2>
+<h2 className='fw-bold'>Categories</h2>
 
       {/* Category Table */}
       <Table responsive="md" striped bordered hover className="category-table">

@@ -108,7 +108,7 @@ const Role = () => {
         </img>
       </Col>
     </Row>
-<h2 className='fw-bold'>Comments</h2>
+<h2 className='fw-bold'>Roles</h2>
       {/* Roles Table */}
       <Table responsive="md" striped bordered hover className="product-table">
         <thead className="bg-dark text-white">
