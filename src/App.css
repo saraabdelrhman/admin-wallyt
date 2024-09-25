@@ -1,8 +1,25 @@
-body{
-  background: linear-gradient(135deg, #f5af1993, #f1271177);
-  width: 100%;
-  height: 100vh;
+/* Global style adjustments */
+.main-container {
+  max-width: 1200px; /* Adjust this width as needed */
+  margin-right: auto;
+  margin-left: auto;
 }
-h2{
-  color: rgb(0, 0, 0);
+
+/* Style adjustments specifically for large screens */
+@media (min-width: 1200px) {
+  .search-box, .profile-info {
+    padding: 12px 18px;
+  }
+}
+
+/* Responsive adjustments for smaller devices */
+@media (max-width: 767px) {
+  .search-box {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .profile-info img {
+    margin-left: 0;
+    margin-top: 10px;
+  }
 }

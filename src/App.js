@@ -35,6 +35,7 @@ import Permissionsview from './components/Edit&Delete/Permissionsview';
 import Newrole from './components/Newrole';
 import Permissions from './components/Permissions.js';
 import Newpermissions from './components/Newpermission.js';
+import Login from './components/Login.js';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
         <Routes>
           <Route path="/" element={<User />} />
           <Route path="/user" element={<User />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/products" element={<Products />} />
           <Route path="/singleuser" element={<Singleuser />} />
           <Route path="/comment" element={<Comment />} />

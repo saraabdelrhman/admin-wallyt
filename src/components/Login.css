@@ -1,0 +1,218 @@
+/* General container styling */
+.page-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-color: #f5f7f9;
+  }
+  
+  /* Left-side login section */
+  .login-content {
+    width: 50%;
+    padding: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #f5f7f9;
+  }
+  
+  /* Login form header */
+  .login-header {
+    font-size: 32px;
+    font-weight: bold;
+    color: #121929;
+    margin-bottom: 30px;
+    text-align: left;
+  }
+  
+  /* Input box styling */
+  .input-box {
+    background: white;
+    border: 1px solid #e6e8ec;
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin-bottom: 15px;
+  }
+  
+  .input-box input {
+    border: none;
+    outline: none;
+    width: 100%;
+    color: #838e9e;
+    font-size: 16px;
+  }
+  
+  /* Sign In Button */
+  .button {
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .btn-primary {
+    background-color: #007dfc;
+    color: white;
+    border: none;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  /* OR divider styling */
+  .or-divider {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 18px;
+    color: #b1a0a0;
+  }
+  
+  /* Google and Facebook button styling */
+  .btn-google, .btn-facebook {
+    background-color: white;
+    border: 1px solid #c5c4c4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 16px;
+  }
+  
+  .btn-google img, .btn-facebook img {
+    margin-right: 10px;
+  }
+  
+  /* Link text for forgot password */
+  .link-text {
+    text-align: right;
+    margin-top: 10px;
+  }
+  
+  .link-text a {
+    color: #377bf7;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  
+  /* Testimonial Section */
+  .testimonial-content {
+    width: 50%;
+    position: relative;
+    background-color: #007dfc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  /* Circle images */
+  .circle-image {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid #afbced;
+  }
+  
+  .large-circle {
+    width: 250px;
+    height: 250px;
+    top: 15%;
+    right: 10%;
+  }
+  
+  .medium-circle {
+    width: 150px;
+    height: 150px;
+    top: 10%;
+    left: 30%;
+  }
+  
+  .small-circle {
+    width: 100px;
+    height: 100px;
+    bottom: 20%;
+    left: 35%;
+  }
+  
+  .extra-small-circle {
+    width: 80px;
+    height: 80px;
+    bottom: 15%;
+    right: 10%;
+  }
+  
+  .circle-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+  
+  /* Testimonial box */
+  .testimonial-box {
+    position: absolute;
+    bottom: 10%;
+    left: 10%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 350px;
+    text-align: left;
+    font-size: 18px;
+    font-weight: 500;
+    color: #121929;
+  }
+  
+  .testimonial-box span {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #63676f;
+  }
+  
+  .testimonial-box .stars {
+    color: #f12711;
+    font-size: 20px;
+    display: flex;
+    margin-top: 5px;
+  }
+  
+  .testimonial-box p {
+    margin-bottom: 10px;
+  }
+  
+  /* Flex behavior for mobile */
+  @media (max-width: 992px) {
+    .page-container {
+      flex-direction: column;
+    }
+  
+    .login-content, .testimonial-content {
+      width: 100%;
+      padding: 30px;
+    }
+  
+    .circle-image {
+      position: static;
+      margin: 20px auto;
+    }
+  
+    .testimonial-box {
+      width: 90%;
+      margin: 20px auto;
+    }
+  }
+  
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+    /* Hide the testimonial section on mobile devices */
+    .testimonial-content {
+      display: none;
+    }
+  
+    /* Make the login content take the full width */
+    .login-content {
+      width: 100%;
+    }
+  }
+  
